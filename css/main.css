@@ -8,12 +8,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(65, 65, 65);
+    background-color: rgb(102, 102, 102);
     box-shadow: 0 0 100px 10px inset rgb(27, 27, 27);
 }
 
 #container {
-    width: 800px;
+    width: 700px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -23,7 +23,7 @@ body {
 
 #boardHeader {
     width: 90%;
-    height: 150px;
+    height: 125px;
     background-color: rgb(7, 0, 102);
     box-shadow: 0 0 100px 10px inset rgb(9, 0, 58);
     border-top-right-radius: 20px;
@@ -42,9 +42,48 @@ body {
     color: rgb(204, 204, 204)
 }
 
-.player {}
+.player {
+    width: 46%;
+    float: left;
+    text-align: center;
+    padding: 10px;
+}
 
-#statusBar {}
+.playerBtn {
+    width: 45%;
+    padding: 6px 8px;
+    border-radius: 3px;
+    color: rgb(228, 228, 228);
+    font-weight: bold;
+    border: none;
+    margin: 0;
+    background: rgba(0, 0, 0, 0.2);
+    font-family: helvetica, arial, sans-serif;
+    font-size: 19pt;
+}
+
+.playerBtn:hover {
+    background: rgba(0, 0, 0, 0.4);
+    color: rgba(117, 117, 117, 0.8);
+}
+
+#playerX {
+    outline: greenyellow solid 2px;
+}
+
+#playerO {
+    outline: black solid 2px;
+}
+
+#statusBar {
+    width: 100%;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(216, 0, 0);
+    text-shadow: 2px 2px 5px rgb(120, 0, 0);
+}
 
 #gameBoard {
     width: 100%;
@@ -53,4 +92,99 @@ body {
     box-shadow: 0 0 200px 90px inset rgb(41, 0, 0);
     border: 5px solid black;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#gbInner {
+    width: 54%;
+    height: 75%;
+}
+
+.gbButton {
+    margin: 0;
+    float: left;
+    padding: 0;
+    width: 125px;
+    height: 125px;
+    border: 4px solid rgb(7, 0, 102);
+    background: rgba(0, 0, 0, 0);
+    font-family: helvetica, arial, sans-serif;
+    font-size: 40pt;
+    color: white;
+}
+
+.gbButton:hover {
+    background: rgba(0, 0, 0, 0.2)
+}
+
+#s1 {
+    border-left: none;
+    border-top: none;
+}
+
+#s2 {
+    border-top: none;
+}
+
+#s3 {
+    border-right: none;
+    border-top: none;
+}
+
+#s4 {
+    border-left: none;
+}
+
+#s6 {
+    border-right: none;
+}
+
+#s7 {
+    border-left: none;
+    border-bottom: none;
+}
+
+#s8 {
+    border-bottom: none;
+}
+
+#s9 {
+    border-right: none;
+    border-bottom: none;
+}
+
+#footer {
+    width: 50%;
+    height: 75px;
+    background-color: rgb(7, 0, 102);
+    box-shadow: 0 0 100px 10px inset rgb(9, 0, 58);
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom: 3px solid black;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#restart {
+    padding: 0;
+    width: 225px;
+    height: 40px;
+    border: 4px solid black;
+    border-radius: 10px;
+    margin: 0;
+    background: rgba(68, 0, 0, 0.6);
+    font-family: helvetica, arial, sans-serif;
+    font-size: 15pt;
+    font-weight: bold;
+    color: rgb(197, 197, 197);
+}
+
+#restart:hover {
+    background: rgba(68, 0, 0, 0.9);
 }
