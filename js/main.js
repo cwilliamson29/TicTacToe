@@ -15,7 +15,9 @@ const PlayerFactory = (name, choice) => {
     if (choice === "O") {
         moves = 4;
     }
-    return { name, choice, moves }
+    let chosenMove = [];
+
+    return { name, choice, moves, chosenMove }
 }
 
 let playerX = PlayerFactory("Player 1", "X");
@@ -25,17 +27,6 @@ let movesLeft = playerX.moves + playerO.moves
 
 // detech box usage
 let gridArray = [];
-let playerChoice = {
-    s1: null,
-    s2: null,
-    s3: null,
-    s4: null,
-    s5: null,
-    s6: null,
-    s7: null,
-    s8: null,
-    s9: null
-}
 
 const winScenario = [
     ["s1", "s4", "s7"],
@@ -49,7 +40,11 @@ const winScenario = [
 ]
 
 let currentPlayer = "x";
-let gridChoiceDetect
+let gridChoiceDetectlet;
+let gameWin = false;
+document.getElementById('restart').addEventListener('click', function() {
+    restartGame();
+});
 
 for (let i = 1; i <= 9;) {
     document.getElementById('s' + i).addEventListener('click', function() {
@@ -59,14 +54,30 @@ for (let i = 1; i <= 9;) {
 }
 
 function setPlayerSelection(id) {
+    if (gameWin) {
+        return
+    }
+
+    let player;
+    if (currentPlayer === "x") {
+        player = playerX;
+        player.chosenMove.push(id);
+    } else if (currentPlayer === "o") {
+        player = playerO;
+        player.chosenMove.push(id);
+    }
+
+    --player.moves;
+
+    console.log(player.name)
     if (currentPlayer === "x") {
         BoxSelection(id, currentPlayer);
-
         if (gridChoiceDetect === true) {
+            ++player.moves
             return
         }
-
         document.getElementById(id).textContent = "X";
+
         currentPlayer = "o";
     } else if (currentPlayer === "o") {
         BoxSelection(id, currentPlayer);
@@ -74,6 +85,7 @@ function setPlayerSelection(id) {
             return
         }
         document.getElementById(id).textContent = "O";
+
         currentPlayer = "x";
     }
 
@@ -90,65 +102,54 @@ function BoxSelection(box, choice) {
 
     } else if (gridChoiceDetect === false) {
         gridArray.push(box);
-        playerChoice[box] = choice;
-        //console.log(playerChoice)
+
+        if (choice !== "x") {
+            player = playerX;
+        } else {
+            player = playerO;
+        }
+
+        document.getElementById('statusBar').textContent = "It's " + player.name + "'s move!";
+
         return detectPlayerWin(choice)
     }
-
-    console.log("skipped if")
 }
 
 function detectPlayerWin(choice) {
-    let playerWin;
-    --movesLeft;
-    if (playerChoice.s1 === choice &&
-        playerChoice.s4 === choice &&
-        playerChoice.s7 === choice) {
+    let player;
 
-        console.log("win")
-    } else if (playerChoice.s2 === choice &&
-        playerChoice.s5 === choice &&
-        playerChoice.s8 === choice) {
-
-        console.log("win")
-    } else if (playerChoice.s3 === choice &&
-        playerChoice.s6 === choice &&
-        playerChoice.s9 === choice) {
-
-        console.log("win")
-    } else if (playerChoice.s1 === choice &&
-        playerChoice.s5 === choice &&
-        playerChoice.s9 === choice) {
-
-        console.log("win")
-    } else if (playerChoice.s1 === choice &&
-        playerChoice.s4 === choice &&
-        playerChoice.s7 === choice) {
-
-        console.log("win")
-    } else if (playerChoice.s7 === choice &&
-        playerChoice.s5 === choice &&
-        playerChoice.s3 === choice) {
-
-        console.log("win")
-    } else if (playerChoice.s1 === choice &&
-        playerChoice.s2 === choice &&
-        playerChoice.s3 === choice) {
-
-        console.log("win")
-    } else if (playerChoice.s4 === choice &&
-        playerChoice.s5 === choice &&
-        playerChoice.s6 === choice) {
-
-        console.log("win")
-    } else if (playerChoice.s7 === choice &&
-        playerChoice.s8 === choice &&
-        playerChoice.s9 === choice) {
-
-        console.log("win")
-    } else if (movesLeft === 0) {
-        console.log("tie game")
+    if (choice === "x") {
+        player = playerX;
     } else {
-        console.log("Bust a move!")
+        player = playerO;
     }
+
+    for (let j = 0; j < 8;) {
+
+        let containsWin = winScenario[j].every(i => player.chosenMove.includes(i));
+
+        if (containsWin === true) {
+            winGame(player);
+            gameWin = true;
+            console.log(player.name + " win")
+        }
+
+        ++j
+    }
+}
+
+function winGame(player) {
+    document.getElementById('statusBar').textContent = player.name + " wins with " + player.moves + " moves left!";
+
+    for (let i = 1; i <= 9;) {
+        document.getElementById('s' + i).addEventListener('click', function() {
+            restartGame();
+        });
+        ++i
+    }
+}
+
+function restartGame() {
+    location.reload();
+    return false;
 }

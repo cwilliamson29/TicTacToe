@@ -23,7 +23,7 @@ body {
 
 #boardHeader {
     width: 90%;
-    height: 125px;
+    height: 85px;
     background-color: rgb(7, 0, 102);
     box-shadow: 0 0 100px 10px inset rgb(9, 0, 58);
     border-top-right-radius: 20px;
@@ -33,7 +33,7 @@ body {
     border-right: 3px solid black;
 }
 
-#selectPlayer {
+#title {
     width: 100%;
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -42,44 +42,12 @@ body {
     color: rgb(204, 204, 204)
 }
 
-.player {
-    width: 46%;
-    float: left;
-    text-align: center;
-    padding: 10px;
-}
-
-.playerBtn {
-    width: 45%;
-    padding: 6px 8px;
-    border-radius: 3px;
-    color: rgb(228, 228, 228);
-    font-weight: bold;
-    border: none;
-    margin: 0;
-    background: rgba(0, 0, 0, 0.2);
-    font-family: helvetica, arial, sans-serif;
-    font-size: 19pt;
-}
-
-.playerBtn:hover {
-    background: rgba(0, 0, 0, 0.4);
-    color: rgba(117, 117, 117, 0.8);
-}
-
-#playerX {
-    outline: greenyellow solid 2px;
-}
-
-#playerO {
-    outline: black solid 2px;
-}
-
 #statusBar {
     width: 100%;
+    height: 40px;
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: bold;
     color: rgb(216, 0, 0);
     text-shadow: 2px 2px 5px rgb(120, 0, 0);
