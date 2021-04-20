@@ -37,6 +37,17 @@ let playerChoice = {
     s9: null
 }
 
+const winScenario = [
+    ["s1", "s4", "s7"],
+    ["s2", "s5", "s8"],
+    ["s3", "s6", "s9"],
+    ["s1", "s5", "s9"],
+    ["s1", "s4", "s7"],
+    ["s1", "s2", "s3"],
+    ["s4", "s5", "s6"],
+    ["s7", "s8", "s9"]
+]
+
 let currentPlayer = "x";
 let gridChoiceDetect
 
